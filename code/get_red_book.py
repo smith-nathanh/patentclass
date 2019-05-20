@@ -106,9 +106,9 @@ def pull_csv(wkly, datadir, txt_fields, ipc_fields):
                             d = "".join(x for x in d if x in string.printable)
                             mute = write_txt.writerow({'pub': pub,
                                                        'typ': pub[0:2],
-                                                       'desc': d.replace('\n', ' ').replace('\r', ' '),
-                                                       'abstract': a.replace('\n', ' ').replace('\r', ' '),
-                                                       'claims': c.replace('\n', ' ').replace('\r', ' ')
+                                                       'desc': d.replace('\n', ' ').replace('\r', ' ').replace('"', ''),
+                                                       'abstract': a.replace('\n', ' ').replace('\r', ' ').replace('"', ''),
+                                                       'claims': c.replace('\n', ' ').replace('\r', ' ').replace('"', '')
                                                        })
                             for c in child.find('us-bibliographic-data-grant').find('classifications-ipcr').findall(
                                     'classification-ipcr'):
@@ -154,7 +154,6 @@ def zip_wklys(wkly, datadir):
     for w in wkly:
         mute = os.system('c:/"Program Files"/7-zip/7z.exe a txt18' + w + '.zip ./ipg18' + w + '/txt18' + w + '.csv')
     return
-
 
 
 """
