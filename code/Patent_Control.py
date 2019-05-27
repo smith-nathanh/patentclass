@@ -13,6 +13,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 import os
+import zipfile
+import glob
 
 
 
@@ -30,9 +32,43 @@ from patent_class import extraction
 data_directory = 'C:\\Users\\smith\\Patent_Project'
 
 
+
+# Extraction
+def extract_patent_files(txtfields_path):
+    """
+    extract the patent data provided in txtfields folder
+    
+    Params:
+        * txtfields_path (str)
+    
+    Returns:
+        * all_patents (dataframe)
+    """
+    
+    all_files = glob.glob(txtfields_path + "/*.zip") 
+    
+    files_collected = []
+    df = []
+    
+    for filename in all_files:
+        with zipfile.ZipFile(filename) as z:
+            for filename in z.namelist():
+                if not os.path.isdir(filename):
+                    with z.open(filename) as f:
+                        files_collected.append(filename)
+                        temp = pd.read_csv(f, dtype='object')
+                        temp['file'] = filename
+                        df.append(temp)
+    
+                       
+    all_patents = pd.concat(df, axis=0, ignore_index=True)
+
+    return all_patents
+
+
 # Load patents
 start = datetime.now()
-patents = extraction.extract_patent_files(data_directory + '\\txtfields')
+patents = extract_patent_files(data_directory + '\\txtfields')
 print('Time to extract patent data:', datetime.now() - start)
 print('Dimensions of patent dataset:', patents.shape)
 
@@ -222,7 +258,7 @@ from datetime import datetime
 
 
 
-# model architecture taken from:
+# model architecture referenced from:
 # https://towardsdatascience.com/machine-learning-word-embedding-sentiment-classification-using-keras-b83c28087456
 # https://towardsdatascience.com/multi-class-text-classification-with-lstm-1590bee1bd17
 model = Sequential()
