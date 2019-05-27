@@ -1,0 +1,46 @@
+Time to extract patent data: 0:02:02.818756
+Dimensions of patent dataset: (309360, 6)
+Dimension of labels dataset: (261733, 2)
+Number of unique labels: 589
+Shape of labels dataset after removal of low count labels: (213577, 2)
+Dimensions of patent dataset after merging on labels: (309360, 7)
+Dimensions of patent data after dropping nan: (213577, 7)
+Number of unique labels on final dataset: 101
+Length of labels vector: 213577
+Number of classes: 101
+Maximum length of texts: 20867
+Using TensorFlow backend.
+Found 139041 unique tokens.
+Shape of data tensor: (213577, 5000)
+Shape of label tensor: (213577,)
+Dimensions of training data (x_train, y_train): (180000, 5000) (180000,)
+Dimensions of validation data (x_val, y_val): (20000, 5000) (20000,)
+Dimensions of (vectorized) y_train_vec: (180000, 101)
+Dimensions of (vectorized) y_val_vec: (20000, 101)
+Found 400000 word vectors.
+Dimensions of Embedding Matrix: (80000, 300)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 5000, 300)         24000000  
+_________________________________________________________________
+gru_1 (GRU)                  (None, 200)               300600    
+_________________________________________________________________
+dense_1 (Dense)              (None, 101)               20301     
+=================================================================
+Total params: 24,320,901
+Trainable params: 320,901
+Non-trainable params: 24,000,000
+_________________________________________________________________
+Train on 180000 samples, validate on 20000 samples
+Epoch 1/5
+180000/180000 [==============================] - 32101s 178ms/step - loss: 1.6041 - acc: 0.5700 - val_loss: 1.0977 - val_acc: 0.6831
+Epoch 2/5
+180000/180000 [==============================] - 32181s 179ms/step - loss: 1.1050 - acc: 0.6836 - val_loss: 0.9919 - val_acc: 0.7150
+Epoch 3/5
+180000/180000 [==============================] - 32086s 178ms/step - loss: 1.0246 - acc: 0.7042 - val_loss: 0.9772 - val_acc: 0.7189
+Epoch 4/5
+180000/180000 [==============================] - 31841s 177ms/step - loss: 0.9941 - acc: 0.7124 - val_loss: 0.9627 - val_acc: 0.7215
+Epoch 5/5
+180000/180000 [==============================] - 32095s 178ms/step - loss: 0.9752 - acc: 0.7163 - val_loss: 0.9608 - val_acc: 0.7230
+Time to execute  1 day, 20:31:44.505570
