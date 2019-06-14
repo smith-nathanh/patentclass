@@ -1,0 +1,56 @@
+Time to extract patent data: 0:01:56.136813
+Dimensions of patent dataset: (309360, 6)
+Dimension of labels dataset: (261733, 2)
+Number of unique labels: 589
+Shape of labels dataset after removal of low count labels: (213577, 2)
+Dimensions of patent dataset after merging on labels: (309360, 7)
+Dimensions of patent data after dropping nan: (213577, 7)
+Number of unique labels on final dataset: 7
+Length of labels vector: 213577
+Number of classes: 7
+Maximum length of texts: 20867
+Using TensorFlow backend.
+Found 139041 unique tokens.
+Shape of data tensor: (213577, 5000)
+Shape of label tensor: (213577,)
+Dimensions of training data (x_train, y_train): (180000, 5000) (180000,)
+Dimensions of validation data (x_val, y_val): (20000, 5000) (20000,)
+Dimensions of (vectorized) y_train_vec: (180000, 7)
+Dimensions of (vectorized) y_val_vec: (20000, 7)
+Found 400000 word vectors.
+Dimensions of Embedding Matrix: (80000, 300)
+How many words in our set have no embedding vector: 37038
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 5000, 300)         24000000  
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 100)               160400    
+_________________________________________________________________
+dense_1 (Dense)              (None, 7)                 707       
+=================================================================
+Total params: 24,161,107
+Trainable params: 161,107
+Non-trainable params: 24,000,000
+_________________________________________________________________
+Train on 180000 samples, validate on 20000 samples
+Epoch 1/3
+180000/180000 [==============================] - 24931s 139ms/step - loss: 0.8444 - acc: 0.6734 - val_loss: 0.6067 - val_acc: 0.7707
+Epoch 2/3
+180000/180000 [==============================] - 24879s 138ms/step - loss: 0.5819 - acc: 0.7794 - val_loss: 0.5720 - val_acc: 0.7824
+Epoch 3/3
+180000/180000 [==============================] - 24910s 138ms/step - loss: 0.5284 - acc: 0.8009 - val_loss: 0.4922 - val_acc: 0.8137
+Time to execute  20:45:21.279674
+              precision    recall  f1-score   support
+
+           0       0.83      0.86      0.84      2654
+           1       0.73      0.77      0.75      1681
+           2       0.75      0.66      0.70      1235
+           3       0.79      0.75      0.77       242
+           4       0.78      0.79      0.79       939
+           5       0.79      0.82      0.81      5917
+           6       0.86      0.83      0.85      7332
+
+   micro avg       0.81      0.81      0.81     20000
+   macro avg       0.79      0.78      0.79     20000
+weighted avg       0.81      0.81      0.81     20000
